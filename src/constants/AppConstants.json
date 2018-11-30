@@ -1,0 +1,30 @@
+import * as React from "react";
+import {INavItem} from "../components/navigation/IHamburgerNav";
+
+export class AppConstants extends React.Component {
+    public static readonly  APP_NAME:string = "Ryan McCullough";
+
+    public static readonly LEFT_NAV_LINKS:INavItem[] =
+        [
+            {
+                label: "Home",
+                url: "/home"
+            },
+            {
+                label: "Projects",
+                url: "/home"
+            },
+            {
+                label: "About",
+                url: "/home"
+            },
+        ];
+
+    public static readonly RIGHT_NAV_LINKS:INavItem[] =
+        [
+            {
+                label: "Login",
+                url: "/login"
+            }
+        ]
+}
