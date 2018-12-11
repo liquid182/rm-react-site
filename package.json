@@ -37,6 +37,7 @@
     "awesome-typescript-loader": "^5.2.1",
     "css-loader": "^1.0.1",
     "fallback-loader": "0.0.0",
+    "file-loader": "^2.0.0",
     "immutable": "^4.0.0-rc.12",
     "mini-css-extract-plugin": "^0.4.4",
     "node-sass": "^4.10.0",

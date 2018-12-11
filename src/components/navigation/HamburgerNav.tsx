@@ -3,6 +3,7 @@ import "bootstrap";
 import * as React from "react";
 import { IHamburgerNav } from "./IHamburgerNav";
 import { NavItem } from "./NavItem";
+//import "../../images/background/blue-waves.svg";
 
 export class HamburgerNav extends React.Component<IHamburgerNav, {}> {
 
