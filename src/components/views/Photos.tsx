@@ -50,7 +50,7 @@ export class Photos extends React.Component<{},IAboutState> {
                           height="75vh"
                           preserveAspectRatio={true}
                           showArrows={true}
-                          showIndicators={true}
+                          showIndicators={false}
                           slideImageURLs={this.state.slides}
                           effect={BSCarousel.EFFECTS.FADE} />
             </div>
