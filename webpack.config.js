@@ -14,7 +14,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             hash: true,
-            title:"Ryan McCullough | React"
+            title:"Ryan McCullough | React",
             filename: path.resolve(__dirname,"dist/index.html"),
             template: path.resolve(__dirname,"src/index.html")
         }),
