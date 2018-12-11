@@ -1,7 +1,7 @@
 export interface INavItem {
     label:string ,
     url:string,
-    isSelected?:boolean
+    key?:string,
 }
 
 export interface IHamburgerNav {
@@ -12,6 +12,6 @@ export interface IHamburgerNav {
     expandMobile?:boolean,
     logoSrc?:string,
     logoLabel?:string,
-    leftLinks?:INavItem[],
-    rightLinks:INavItem[]
+    leftLinks?:INavItem[]|undefined,
+    rightLinks:INavItem[]|undefined
 }

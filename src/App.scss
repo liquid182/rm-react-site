@@ -1,31 +1,88 @@
-.App {
-}
+@import "~bootstrap/scss/bootstrap";
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
+$slideshow-height: 70vh;
+  h1, .navbar-brand {
+    font-size: 2.5em;
+  }
+  .navbar,
+  .navbar-brand {
+    text-shadow: 2px 2px 4px #000;
+  }
 
-.App-title {
+  .navbar-dark .navbar-nav .nav-link {
+    color:rgba(255, 255, 255, 0.7)
+  }
 
-}
+  h2 {
+    font-size: 2.1em;
+  }
 
-.App-intro {
-  font-size: large;
-}
+  h3 {
+    font-size: 1.8em;
+  }
 
-.body-content {
-  margin:5em;
-}
+  p, a, span {
+    font-size: 1.4em;
+    position:relative;
+  }
+  body {
+    margin: 0;
+    font-size: 62.5%;
+    padding: 0;
+    background-color: $light;
+    font-family: sans-serif;
+  }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  .nav-divider {
+    width: 25em;
+  }
+
+  .navbar-brand {
+    margin-right: 3rem;
+  }
+  .navbar-app-logo {
+    //animation: app-logo-spin infinite 20s linear;
+    transform: rotate(-30deg);
+    height: 10em;
+    margin-bottom: 0.5em;
+    margin-left:0.5em;
+    margin-right:0.5em;
+    margin-top:0em;
+  }
+
+  .app-header {
+    background-color: $secondary;
+    background-repeat: repeat-x;
+    background-image: url("./images/background/blue-waves.svg");
+    padding: 20px;
+    color: white;
+  }
+
+  .body-content {
+    margin:2em;
+  }
+
+  .photostream{
+    position:relative;
+    margin: -2em;
+  }
+
+@keyframes app-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+@include media-breakpoint-down(sm) {
+  .nav-right {
+    border-top: 1px solid $secondary;
+    max-width: 15em;
+  }
+  .navbar-nav.nav-left {
+    margin-top:2em;
+  }
+  .navbar-brand {
+    display: none;
+  }
+
 }

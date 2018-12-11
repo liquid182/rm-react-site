@@ -1,30 +1,34 @@
-import * as React from "react";
-import {INavItem} from "../components/navigation/IHamburgerNav";
 
-export class AppConstants extends React.Component {
-    public static readonly  APP_NAME:string = "Ryan McCullough";
-
-    public static readonly LEFT_NAV_LINKS:INavItem[] =
-        [
+{
+    "APP_NAME": "Ryan McCullough",
+    "LOG_LEVEL": "debug",
+    "GOOGLE_API_KEY": "AIzaSyCgJU5jO4j5_VOIKu54nkQeDduwJ-QYG7c",
+    "GOOGLE_FOLDER_ID": "1js1EpWsISH6BLUj7C_zZmQnTEPXi7FMN",
+    "NAV_LINKS": {
+        "LEFT": [
             {
-                label: "Home",
-                url: "/home"
+                "label": "Home",
+                "url": "/"
             },
             {
-                label: "Projects",
-                url: "/home"
+                "label": "Projects",
+                "url": "/projects"
             },
             {
-                label: "About",
-                url: "/home"
+                "label": "About",
+                "url": "/about"
             },
-        ];
-
-    public static readonly RIGHT_NAV_LINKS:INavItem[] =
-        [
             {
-                label: "Login",
-                url: "/login"
+              "label":"Photos",
+              "url":"/photos"
+            }
+        ],
+        "RIGHT": [
+            {
+                "label": "Login",
+                "url": "/login"
             }
         ]
+    }
+
 }

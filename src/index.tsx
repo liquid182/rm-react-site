@@ -1,11 +1,19 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import {createStore, Store} from 'redux'
 import App from './App';
-import './index.css';
+import reducer from './redux/reducers'
+
 import registerServiceWorker from './registerServiceWorker';
 
+const store:Store = createStore(reducer);
+
+if (process.env.NODE_ENV !== 'production') {
+    localStorage.setItem('debug', 'rm-react-site:*');
+}
+
 ReactDOM.render(
-  <App />,
-  document.getElementById('root') as HTMLElement
+    <App store={store} />,
+    document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
