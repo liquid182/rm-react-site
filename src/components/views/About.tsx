@@ -1,7 +1,5 @@
 import * as React from "react";
-import {GOOGLE_API_KEY, GOOGLE_FOLDER_ID} from "../../constants/AppConstants.json";
-import {Log} from "../../logging/Log";
-import {GDrive, IGDrive} from "../../utility/GDrive";
+//import {Log} from "../../logging/Log";
 
 interface IAboutState {
     slides: string[],
@@ -9,22 +7,10 @@ interface IAboutState {
 
 export class About extends React.Component<{},IAboutState> {
 
-    private log:Log = new Log(About.name);
+    //private log:Log = new Log(About.name);
 
     constructor(props:any) {
         super(props);
-        this.state = {
-            slides: []
-        };
-        this.log.debug("Mounted About.");
-        GDrive.getFileList(GOOGLE_API_KEY, GOOGLE_FOLDER_ID)
-            .then((response: IGDrive) => {
-                    this.log.debug("Got Slides: "+response.files.length);
-                    this.setState({
-                        slides: response.files.map( GDrive.mapGDriveFileToURLStringArray)});
-                }
-            );
-
     }
 
 
