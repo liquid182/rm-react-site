@@ -37,12 +37,12 @@ export class HamburgerNav extends React.Component<IHamburgerNav, IHambergerNavSt
   private log: Log = new Log(HamburgerNav.name);
 
   private navProps: IHamburgerNav;
-  private styleString: string = "navbar";
   private styleStringLight: string = " navbar-light";
   private styleStringDark: string = " navbar-dark";
   private expandDesktopStyle: string = " navbar-expand-lg";
   private expandTabletStyle: string = " navbar-expand-md";
   private expandMobileStyle: string = " navbar-expand-sm";
+  private showMenuStyle: string = " show";
 
   private logoElement: JSX.Element | null = null;
   private leftNavLinks: JSX.Element[] | null;
@@ -67,13 +67,13 @@ export class HamburgerNav extends React.Component<IHamburgerNav, IHambergerNavSt
 
   public render() {
       return (
-          <nav className={this.styleString}>
+          <nav className={this.getNavStyles()}>
               {this.logoElement}
               <a className="navbar-brand" href="#">{this.navProps.title}</a>
               <button className="navbar-toggler" onClick={this.toggleNav} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent1"
                   aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"/>
               </button>
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <div className={this.getCollapsedStyles()} id="navbarSupportedContent">
                   { this.leftNavLinks  &&
                       <ul className="nav-left navbar-nav mr-auto align-items-end">
                           {this.leftNavLinks}
@@ -103,24 +103,33 @@ export class HamburgerNav extends React.Component<IHamburgerNav, IHambergerNavSt
 
   private toggleNav = () => {
     this.log.debug("Toggling Nav to:"+!this.state.menuOpen);
-      this.setState({menuOpen:!this.state.menuOpen});
+    this.setState({menuOpen:!this.state.menuOpen});
   }
 
-   private setLogo(){
-       if( this.navProps.logoSrc ){
-           this.logoElement = <img src={this.navProps.logoSrc} alt={this.navProps.logoLabel} className="navbar-app-logo"/>;
-       }
-   }
+  private setLogo(){
+    if( this.navProps.logoSrc ){
+      this.logoElement = <img src={this.navProps.logoSrc} alt={this.navProps.logoLabel} className="navbar-app-logo"/>;
+    }
+  }
 
-   private setStyleString(){
-       if( this.navProps.dark ){
-           this.styleString += this.styleStringDark;
-       }else{
-           this.styleString += this.styleStringLight;
-       }
-       this.styleString += this.navProps.expandDesktop ? this.expandDesktopStyle:'';
-       this.styleString += this.navProps.expandMobile ? this.expandMobileStyle: '' ;
-       this.styleString += this.navProps.expandTablet ? this.expandTabletStyle: '';
+  private getCollapsedStyles = ():string => {
+    let styleString = "collapse navbar-collapse";
+    if( this.state.menuOpen ){
+      styleString += this.showMenuStyle;
+    }
+    return styleString;
+  };
 
-   }
+  private getNavStyles = ():string => {
+    let styleString:string = "navbar";
+    if( this.navProps.dark ){
+      styleString += this.styleStringDark;
+    }else{
+      styleString += this.styleStringLight;
+    }
+    styleString += this.navProps.expandDesktop ? this.expandDesktopStyle:'';
+    styleString += this.navProps.expandMobile ? this.expandMobileStyle: '' ;
+    styleString += this.navProps.expandTablet ? this.expandTabletStyle: '';
+    return styleString;
+  }
 }
