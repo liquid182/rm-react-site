@@ -52,7 +52,6 @@ export class HamburgerNav extends React.Component<IHamburgerNav, IHambergerNavSt
     super(props);
 
     this.navProps = props;
-    this.setStyleString();
     this.setLogo();
     this.leftNavLinks = _.map(this.navProps.leftLinks, this.generateNavLinks);
     this.rightNavLinks = _.map(this.navProps.rightLinks, this.generateNavLinks);
