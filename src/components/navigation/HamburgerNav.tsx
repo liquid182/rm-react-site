@@ -95,12 +95,14 @@ export class HamburgerNav extends React.Component<IHamburgerNav, IHambergerNavSt
   }
 
   private closeNav = () => {
+    this.log.debug("Closing nav.Menu Open:"+this.state.menuOpen);
     if( this.state.menuOpen === true ){
       this.setState({menuOpen:false});
     }
   };
 
   private toggleNav = () => {
+    this.log.debug("Toggling Nav to:"+!this.state.menuOpen);
       this.setState({menuOpen:!this.state.menuOpen});
   }
 
