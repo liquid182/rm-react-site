@@ -1,6 +1,12 @@
 import * as React from "react";
 import {NavLink} from "react-router-dom";
-import {INavItem} from "./IHamburgerNav";
+
+export interface INavItem {
+    clickEvent?:()=>void,
+    label:string ,
+    url:string,
+    key?:string,
+}
 
 export class NavItem extends React.Component<INavItem, {}> {
 
@@ -29,7 +35,7 @@ export class NavItem extends React.Component<INavItem, {}> {
       return (
         <li key={this.navItem.key} className={this.navItemClass}>
             <NavLink
-                className="nav-link" to={this.navItem.url} exact={exact}>{this.navItem.label}
+                className="nav-link" onClick={this.navItem.clickEvent} to={this.navItem.url} exact={exact}>{this.navItem.label}
             </NavLink>
         </li>
       );
