@@ -1,0 +1,83 @@
+
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
+//slide-in animation
+@include media-breakpoint-up(md) {
+  .navbar.navbar-expand-md .navbar-collapse:not(.show){
+    max-height: 600px;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .navbar.navbar-expand-sm .navbar-collapse:not(.show){
+    max-height:600px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .navbar-expand-lg .navbar-collapse{
+    max-height:600px;
+  }
+
+
+}
+
+.collapse.navbar-collapse:not(.show){
+  max-height:0;
+  height:auto;
+  display:block;
+
+}
+.navbar-collapse{
+    //width:100%;
+    transition: max-height ease-in 1s;
+    max-height:600px;
+    height:auto;
+    overflow:hidden;
+}
+
+
+//icon animation
+.icon-bar {
+	width: 25px;
+	height: 3px;
+	background-color: #B6B6B6;
+	display: block;
+	transition: all 0.2s;
+	margin-top: 4px
+}
+
+.navbar-toggler {
+  border: none;
+  background: transparent !important;
+}
+
+.navbar-toggler .top-bar {
+  transform: translate(3px) rotate(45deg);
+  transform-origin: 10% 10%;
+
+}
+
+.navbar-toggler .middle-bar {
+  opacity: 0;
+}
+
+.navbar-toggler .bottom-bar {
+  transform:translate(3px) rotate(-45deg);
+  transform-origin: 10% 90%;
+
+
+}
+
+.navbar-toggler.collapsed .top-bar {
+  transform: rotate(0);
+}
+
+.navbar-toggler.collapsed .middle-bar {
+  opacity: 1;
+}
+
+.navbar-toggler.collapsed .bottom-bar {
+  transform: rotate(0);
+}

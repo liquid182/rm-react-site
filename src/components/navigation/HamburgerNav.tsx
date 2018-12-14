@@ -1,10 +1,9 @@
 import * as _ from "lodash";
-import "bootstrap";
 import * as React from "react";
 import { INavItem, NavItem } from "./NavItem";
 import { Log } from "../../logging/Log";
+import "./HamburgerNav.scss"
 
-//import "../../images/background/blue-waves.svg";
 export interface IHamburgerNav {
     title:string ,
     closeOnClick:boolean ,
@@ -69,8 +68,13 @@ export class HamburgerNav extends React.Component<IHamburgerNav, IHambergerNavSt
           <nav className={this.getNavStyles()}>
               {this.logoElement}
               <a className="navbar-brand" href="#">{this.navProps.title}</a>
-              <button className="navbar-toggler" onClick={this.toggleNav} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent1"
-                  aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"/>
+              <button className={this.getHamburgerStyles()} onClick={this.toggleNav} type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent1"
+                  aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="icon-bar top-bar"></span>
+                  <span className="icon-bar middle-bar"></span>
+                  <span className="icon-bar bottom-bar"></span>
+                  <span className="sr-only">Toggle navigation</span>
+                  <span className="sr-only">Toggle navigation</span>
               </button>
               <div className={this.getCollapsedStyles()} id="navbarSupportedContent">
                   { this.leftNavLinks  &&
@@ -113,12 +117,19 @@ export class HamburgerNav extends React.Component<IHamburgerNav, IHambergerNavSt
 
   private getCollapsedStyles = ():string => {
     let styleString = "collapse navbar-collapse";
-    if( this.state.menuOpen ){
+    if( this.state && this.state.menuOpen === true ){
       styleString += this.showMenuStyle;
     }
     return styleString;
   };
 
+  private getHamburgerStyles = ():string => {
+    let styleString = "navbar-toggler";
+    if(this.state && this.state.menuOpen !== true){
+      styleString += " collapsed";
+    }
+    return styleString;
+  };
   private getNavStyles = ():string => {
     let styleString:string = "navbar";
     if( this.navProps.dark ){
