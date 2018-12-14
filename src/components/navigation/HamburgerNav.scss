@@ -3,36 +3,53 @@
 @import '~bootstrap/scss/_variables';
 @import '~bootstrap/scss/mixins/_breakpoints';
 //slide-in animation
-@include media-breakpoint-up(md) {
-  .navbar.navbar-expand-md .navbar-collapse:not(.show){
-    max-height: 600px;
-  }
-}
+$hamburgerHeight: 40vh;
 
-@include media-breakpoint-up(sm) {
-  .navbar.navbar-expand-sm .navbar-collapse:not(.show){
-    max-height:600px;
-  }
+@include media-breakpoint-up(md) {
+
+    .navbar.navbar-expand-md .navbar-collapse{
+      max-height: $hamburgerHeight !important;
+      opacity:100 !important;
+      //display:block !important;
+    }
+
+    .navbar:not(.navbar-expand-md) .navbar-collapse:not(.show){
+      max-height:0;
+      opacity:0;
+    }
 }
 
 @include media-breakpoint-up(lg) {
-  .navbar-expand-lg .navbar-collapse{
-    max-height:600px;
+  .navbar.navbar-expand-lg .navbar-collapse{
+    max-height: $hamburgerHeight !important;
+    opacity:100 !important;
+    //display:block !important;
   }
 
-
+  .navbar:not(.navbar-expand-lg) .navbar-collapse:not(.show){
+    max-height:0;
+    opacity:0;
+  }
 }
 
-.collapse.navbar-collapse:not(.show){
-  max-height:0;
-  height:auto;
+.navbar.navbar-expand-sm .navbar-collapse{
+  max-height: $hamburgerHeight;
   display:block;
+  opacity:100;
+}
 
+.navbar:not(.navbar-expand-sm) .navbar-collapse:not(.show){
+  max-height:0;
+  opacity:0;
+}
+
+.navbar-collapse.collapse:not(.show){
+  display:block;
+  max-height:0;
 }
 .navbar-collapse{
-    //width:100%;
-    transition: max-height ease-in 1s;
-    max-height:600px;
+    transition: all ease-in 1s;
+    max-height:$hamburgerHeight;
     height:auto;
     overflow:hidden;
 }
