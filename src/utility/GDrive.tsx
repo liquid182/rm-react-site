@@ -6,7 +6,7 @@ export class GDrive {
     public static imageFileUrl: string = "https://lh3.googleusercontent.com/u/0/d/";
     public static log: Log = new Log(GDrive.name);
 
-    public static getFileList(apiKey: string, rootId?: string, mimeType?: string): Promise<IGDrive|void> {
+    public static getFileList(apiKey: string, rootId?: string): Promise<IGDrive|void> {
         GDrive.log.debug("Searching for files under folder:" + rootId);
         const folder: string = "'" + rootId + "' in parents";
         return window.fetch(this.driveApiUrl + "?q=" + folder + "&corpora=user&key=" + apiKey)

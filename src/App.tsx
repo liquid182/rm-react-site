@@ -6,7 +6,7 @@ import {Switch} from "react-router-dom";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import {Store} from "redux";
 import {HamburgerNav} from "./components/navigation/HamburgerNav";
-import {About} from "./components/views/About";
+import {Blog} from "./components/views/Blog";
 import {Home} from "./components/views/Home";
 import {Photos} from "./components/views/Photos";
 import {Projects} from "./components/views/Projects";
@@ -39,7 +39,7 @@ class App extends React.Component<IAppProps,{}> {
                             <Switch>
                                 <Route path="/" component={Home} exact={true}/>
                                 <Route path="/projects" component={Projects}/>
-                                <Route path="/about" component={About}/>
+                                <Route path="/blogs" component={Blog}/>
                                 <Route path="/photos" component={Photos}/>
                             </Switch>
                         </div>
