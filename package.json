@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@githubprimer/octicons-react": "^8.2.0",
     "@types/lodash": "^4.14.118",
     "@types/react-redux": "^6.0.9",
     "@types/xml2js": "^0.4.3",
