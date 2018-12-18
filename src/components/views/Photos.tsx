@@ -48,7 +48,7 @@ export class Photos extends React.Component<{},IAboutState> {
 
 
     public render() {
-        return (<div className="tab tab__about">
+        return (<div className="tab tab__photos">
             <h1>Elphin Lake Hike/Hut</h1>
             <p> Here is some photos from my google albums!</p>
             <div className="photostream">
