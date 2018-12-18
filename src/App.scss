@@ -23,16 +23,24 @@ $max-body-width:  map-get($grid-breakpoints, lg);
     font-size: 1.8em;
   }
 
-  p, a, span {
+  /*p, a, span {
     font-size: 1.4em;
     position:relative;
-  }
+  }*/
   body {
     margin: 0;
     font-size: 62.5%;
     padding: 0;
     background-color: $light;
     font-family: sans-serif;
+  }
+
+  .nav-item {
+    font-size: 1.4em;
+  }
+
+  .card-text p span {
+
   }
 
   .nav-divider {
