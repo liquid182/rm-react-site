@@ -20,7 +20,7 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
           {this.props.item.title}
         </div>
         <div className="card-body">
-          <p className="card-text" dangerouslySetInnerHTML={this.props.item["content:encoded"]}></p>
+          <p className="card-text" dangerouslySetInnerHTML={{__html:this.props.item["content:encoded"]}}></p>
         </div>
         <div className="card-footer text-muted">
           <span className="mr-auto">Published:{this.props.item.pubDate}</span>
