@@ -6,6 +6,7 @@ import { Log } from "../../logging/Log";
 import { BlogCard } from "./BlogCard";
 import "./BlogList.scss";
 
+
 export interface IBlogList {
   feedUrl: string;
   loadingIndicator: JSX.Element;
@@ -17,6 +18,7 @@ export interface IBlogListState {
 }
 
 export class BlogList extends React.Component<IBlogList, IBlogListState> {
+  private enlighterJS = require('enlighterjs');
   private static CORS_PROXY: string = "https://cors-anywhere.herokuapp.com/";
   public static defaultProps = {
     loadingIndicator: <div key={0} className="loading animated">Loading...</div>
@@ -44,6 +46,19 @@ export class BlogList extends React.Component<IBlogList, IBlogListState> {
 
   public mapFeedItems(feedItem: IFeedItem, index: number) {
     return <BlogCard key={index} item={feedItem} />;
+  }
+
+  public componentDidUpdate(){
+    this.enlighterJS.init('pre','code', {
+      language:"javascript",
+      theme:"bootstrap4",
+      indent:"2"
+    });
+    /*        EnlighterJS.init('pre', 'code', {
+                language : 'javascript',
+                theme: 'enlighter',
+                indent : 2
+        });*/
   }
 
   public render() {
