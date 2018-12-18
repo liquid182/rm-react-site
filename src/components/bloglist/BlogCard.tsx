@@ -1,20 +1,16 @@
 import * as React from "react";
 import { IFeedItem } from "./IRssFeed";
-import Octicon, {ArrowDown, ArrowUp} from '@githubprimer/octicons-react';
+//import Octicon, {TriangleDown, TriangleUp} from '@githubprimer/octicons-react';
 interface IBlogCard {
   item: IFeedItem;
 }
 
 interface IBlogCardState {
-  expanded: boolean;
 }
 
 export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
   constructor(props: IBlogCard) {
     super(props);
-    this.state = {
-      expanded: false
-    };
   }
 
   render() {
@@ -24,19 +20,30 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
           {this.props.item.title}
         </div>
         <div className="card-body">
-          <p className="card-text">{this.state.expanded? this.props.item.content:this.props.item.contentSnippet}</p>
+          <p className="card-text">{this.props.item["content:encoded"]}</p>
         </div>
         <div className="card-footer text-muted">
-          Published:{this.props.item.pubDate}
-          <span className="ml-auto" onClick={this.toggleExpand}>
-            <Octicon icon={this.state.expanded ? ArrowUp:ArrowDown} />
+          <span className="mr-auto">Published:{this.props.item.pubDate}</span>
+          { this.props.item.link &&
+          <span className="ml-auto">
+            <button className="ml-auto" onClick={this.openSource}>
+              Original
+            </button>
           </span>
+          }
+
         </div>
       </div>
     );
   }
+/*
+<span className="ml-auto" onClick={this.toggleExpand}>
+  <Octicon icon={this.state.expanded ? TriangleUp:TriangleDown} />
+</span>
+*/
 
-  private toggleExpand = () => {
-    this.setState({expanded:!this.state.expanded})
+  private openSource = (event) => {
+    event.preventDefault();
+    window.open(this.props.item.link)
   }
 }

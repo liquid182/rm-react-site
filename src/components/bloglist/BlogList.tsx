@@ -19,7 +19,7 @@ export interface IBlogListState {
 export class BlogList extends React.Component<IBlogList, IBlogListState> {
   private static CORS_PROXY: string = "https://cors-anywhere.herokuapp.com/";
   public static defaultProps = {
-    loadingIndicator: <div className="loading animated">Loading...</div>
+    loadingIndicator: <div key={0} className="loading animated">Loading...</div>
   };
   constructor(props: IBlogList) {
     super(props);
