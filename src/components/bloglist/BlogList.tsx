@@ -7,7 +7,8 @@ import {BlogCard} from "./BlogCard";
 
 
 export interface IBlogList {
-  feedUrl:string
+  feedUrl:string,
+  loadingIndicator:JSX.Element
 }
 
 export interface IBlogListState {
@@ -17,7 +18,9 @@ export interface IBlogListState {
 
 export class BlogList extends React.Component<IBlogList,IBlogListState> {
   private static CORS_PROXY:string = "https://cors-anywhere.herokuapp.com/";
-
+  public static defaultProps = {
+    loadingIndicator: <div className="loading animated">Loading...</div>
+  }
   constructor (props:IBlogList){
     super(props);
     this.getRSSFeeds();
@@ -46,6 +49,8 @@ export class BlogList extends React.Component<IBlogList,IBlogListState> {
     let feedItems:JSX.Element[] = [];
     if( feed && feed.items ){
       feedItems = _.map(feed.items,this.mapFeedItems);
+    }else{
+      feedItems = [this.props.loadingIndicator];
     }
     return (feedItems);
   }
