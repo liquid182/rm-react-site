@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import { INavItem, NavItem } from "./NavItem";
 import { Log } from "../../logging/Log";
-import "./HamburgerNav.scss"
+import "./HamburgerNav.scss";
 
 export interface IHamburgerNav {
     title:string ,

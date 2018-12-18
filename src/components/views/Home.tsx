@@ -12,7 +12,7 @@ export class Home extends React.Component {
   }
 
   public render() {
-    return (<div className="tab__home">
+    return (<div className="tab tab__home">
                 <h1>Home</h1>
                 <p> This is Ryan McCullough's first React site, built using Webpack, Typescript, SCSS.</p>
                 <button onClick={this.clickMe}> Get List! </button>

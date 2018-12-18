@@ -1,7 +1,13 @@
 @import "~bootstrap/scss/bootstrap";
 
-
 $slideshow-height: 70vh;
+$max-body-width:  map-get($grid-breakpoints, lg);
+
+.card-header {
+  font-size: 1.5em;
+}
+
+
   h1, .navbar-brand {
     font-size: 2.5em;
   }
@@ -60,7 +66,17 @@ $slideshow-height: 70vh;
   }
 
   .body-content {
-    margin:2em;
+    max-width: $max-body-width;
+    //margin:2em;
+    margin-top:2em;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  @include media-breakpoint-down(md){
+    .body-content {
+      margin:2em;
+    }
   }
 
   .photostream{

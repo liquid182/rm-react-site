@@ -1,12 +1,18 @@
 import * as React from "react";
-import {Parser} from "xml2js";
+import * as _ from "lodash";
+import * as Parser from "rss-parser";
+import {IFeed, IFeedItem} from "./IRssFeed";
 import {Log} from "../../logging/Log";
+import {BlogCard} from "./BlogCard";
+
+
 export interface IBlogList {
   feedUrl:string
 }
 
 export interface IBlogListState {
-
+  feed?:IFeed,
+  loaded:boolean
 }
 
 export class BlogList extends React.Component<IBlogList,IBlogListState> {
@@ -15,41 +21,32 @@ export class BlogList extends React.Component<IBlogList,IBlogListState> {
   constructor (props:IBlogList){
     super(props);
     this.getRSSFeeds();
+    this.state = {
+      loaded:false
+    }
   }
   private log:Log = new Log(BlogList.name);
   private getRSSFeeds = () => {
     if( this.props.feedUrl != null ){
-
-      window.fetch(BlogList.CORS_PROXY+this.props.feedUrl).then(this.initializeParser)
-      .then(this.convertXMLtoJson);
+      new Parser().parseURL(BlogList.CORS_PROXY+this.props.feedUrl).then(this.populateFeed);
     }
   }
 
-  private initializeParser = (response:Response):Promise<string> => {
-    if( response.status === 200 || response.status === 0){//no-cors status is 0
-      return response.text();
-    }else{
-      return Promise.reject("RSS Feed configured returned a ["+response.status+"] response.  Nothing to display.");
-    }
+  private populateFeed = (feed:IFeed)=> {
+    this.log.debug("Successfully got feed item.");
+    this.setState({feed});
+  };
+
+  public mapFeedItems(feedItem:IFeedItem, index:number){
+    return <BlogCard key={index} item={feedItem}/>
   }
-
-  private convertXMLtoJson = (xml:string):void => {
-    debugger;
-    let feedParser:Parser = new Parser();
-    feedParser.parseString(xml,this.parseRSSObject);
-    //this.log.error("Got object:"+xml+"JSON:"+JSON.stringify(object));
-  }
-
-  private parseRSSObject  = (err:any,result:any):void => {
-    debugger;
-    this.log.error("Got object:"+result+"JSON:"+JSON.stringify(result));
-  }
-
-
 
   public render(){
-    return(
-    <p>Hi there!</p>
-    );
+    const {feed}  = this.state;
+    let feedItems:JSX.Element[] = [];
+    if( feed && feed.items ){
+      feedItems = _.map(feed.items,this.mapFeedItems);
+    }
+    return (feedItems);
   }
 }

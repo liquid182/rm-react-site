@@ -17,8 +17,9 @@
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts-ts": "^3.1.0",
+    "react-scripts-ts": "^4.0.8",
     "redux-immutablejs": "0.0.8",
+    "rss-parser": "^3.6.0",
     "whatwg-fetch": "^3.0.0",
     "xml2js": "^0.4.19"
   },
@@ -26,7 +27,7 @@
     "build": "webpack",
     "test": "webpack test",
     "eject": "react-scripts-ts eject",
-    "start": "webpack-dev-server --open --hot --inline --mode development"
+    "start": "webpack-dev-server --hot --inline --mode development"
   },
   "devDependencies": {
     "@types/jest": "^23.3.7",
