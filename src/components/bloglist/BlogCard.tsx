@@ -42,8 +42,8 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
 </span>
 */
 
-  private openSource = (event) => {
+  private openSource = (event:React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    window.open(this.props.item.link)
+    window.open(this.props.item.link,"_blank");
   }
 }
