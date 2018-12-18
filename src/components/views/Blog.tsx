@@ -20,10 +20,8 @@ export class Blog extends React.Component<{},IBlogState> {
         return (<div className="tab tab__blog">
             <h1>Blogs</h1>
             <p>Here's a list of stuff I've written:</p>
-            <BlogList feedUrl="https://blogs.perficientdigital.com/author/rmccullough/feed/"/>
-            <BlogList feedUrl="https://blogs.perficient.com/author/rmccullough/feed/"/>
-
-            <p> another terst</p>
+            <BlogList key={0} feedUrl="https://blogs.perficientdigital.com/author/rmccullough/feed/"/>
+            <BlogList key={1} feedUrl="https://blogs.perficient.com/author/rmccullough/feed/"/>
         </div>);
     }
 }
