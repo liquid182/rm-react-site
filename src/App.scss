@@ -35,13 +35,21 @@ $max-body-width:  map-get($grid-breakpoints, lg);
     font-family: sans-serif;
   }
 
+  p {
+    font-size:1.4em;
+  }
+
   .nav-item {
     font-size: 1.4em;
   }
-
-  .card-text p span {
-
+  //reset the font-size for card-text in case of nested P's.
+  .card-text p{
+    font-size:1em;
+    span {
+      font-family:sans-serif;
+    }
   }
+
 
   .nav-divider {
     width: 25em;

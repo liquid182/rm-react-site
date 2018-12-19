@@ -18,14 +18,14 @@ export interface IBlogListState {
 }
 
 export class BlogList extends React.Component<IBlogList, IBlogListState> {
-  private enlighterJS = require('enlighterjs');
+  //tslint:disable-next-line
+  //private enlighterJS = require('enlighterjs');
   private static CORS_PROXY: string = "https://cors-anywhere.herokuapp.com/";
   public static defaultProps = {
     loadingIndicator: <div key={0} className="loading animated">Loading...</div>
   };
   constructor(props: IBlogList) {
     super(props);
-    this.getRSSFeeds();
     this.state = {
       loaded: false
     };
@@ -48,18 +48,10 @@ export class BlogList extends React.Component<IBlogList, IBlogListState> {
     return <BlogCard key={index} item={feedItem} />;
   }
 
-  public componentDidUpdate(){
-    this.enlighterJS.init('pre','code', {
-      language:"javascript",
-      theme:"bootstrap4",
-      indent:"2"
-    });
-    /*        EnlighterJS.init('pre', 'code', {
-                language : 'javascript',
-                theme: 'enlighter',
-                indent : 2
-        });*/
+  public componentDidMount(){
+    this.getRSSFeeds();
   }
+
 
   public render() {
     const { feed } = this.state;
