@@ -2,11 +2,15 @@ import * as React from "react";
 import { IFeedItem } from "./IRssFeed";
 import "./enlighterjs.min.js";
 import * as _ from "lodash";
-import Octicon, {TriangleDown, TriangleUp} from '@githubprimer/octicons-react';
+import Octicon, {LinkExternal,TriangleDown, TriangleUp} from '@githubprimer/octicons-react';
 import * as ReactDOM from "react-dom";
+import SVGLink from "../elements/SVGLink"
 
 interface IBlogCard {
-  item: IFeedItem;
+  item: IFeedItem,
+  showPubDate:boolean,
+  expandToFullContent:boolean,
+  showExternalLink:boolean
 }
 
 interface IBlogCardState {
@@ -16,12 +20,19 @@ interface IBlogCardState {
 export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
   private static INITIALIZED_ATTR:string = "data-initialized";
   private static THEME_SELECTOR: string = "data-enlighter-theme";
+
+  public static defaultProps = {
+    showPubDate:true,
+    expandToFullContent:true,
+    showExternalLink:true
+  };
+
   constructor(props: IBlogCard) {
     super(props);
     this.state = {expanded:false};
   }
 
-  private toggleExpand = (event:React.MouseEvent):void => {
+  private toggleExpand = ():void => {
     this.setState({expanded:!this.state.expanded})
   };
 
@@ -53,17 +64,28 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
     return (
       <div className="card bg-light mb-3">
         <div className="card-header text-white bg-dark">
-          {this.props.item.title}
+          <span className="card-heading">{this.props.item.title}</span>
+          { this.props.showExternalLink &&
+            <SVGLink classes={["ml-auto"]} onClick={()=>{window.open(this.props.item.link,"_blank");}}>
+              <Octicon width={50} height={25} icon={LinkExternal} />
+            </SVGLink>
+          }
         </div>
         <div className={"card-body "+(this.state.expanded ? "expanded":"")}>
           <p className="card-text" dangerouslySetInnerHTML={{__html: this.state.expanded ? this.props.item["content:encoded"]:this.props.item.content}}></p>
         </div>
+        { (this.props.expandToFullContent || this.props.showPubDate) &&
         <div className="card-footer text-muted">
-          <span>Published:{this.props.item.pubDate}</span>
-          <span className="ml-auto" onClick={this.toggleExpand}>
-            <Octicon width={100} height={25} icon={this.state.expanded ? TriangleUp:TriangleDown} />
-          </span>
+          {this.props.showPubDate &&
+            <span>Published:{this.props.item.pubDate}</span>
+          }
+          { this.props.expandToFullContent &&
+            <SVGLink classes={["ml-auto"]} onClick={this.toggleExpand} dark={true}>
+              <Octicon width={50} height={25} icon={this.state.expanded ? TriangleUp:TriangleDown} />
+            </SVGLink>
+        }
         </div>
+      }
       </div>
     );
   }

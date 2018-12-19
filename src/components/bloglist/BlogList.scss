@@ -6,21 +6,42 @@
   display:flex;
   flex-direction:column;
   overflow:hidden;
-  transition: flex-grow 2s;
-  //flex: 1 0 300px;
   max-height:min-content;
 }
 
 .card-body img {
   max-width:100%;
 }
-.card-body.expanded {
-  //max-height:min-content;
-}
-.card-footer {
+
+.card-footer,.card-header {
   display:flex;
-  flex-direction: row;
 }
+
+.svglink {
+  color: #fff;
+  :active{
+    color: #fff;
+  }
+  :hover {
+    color: rgba(255, 255, 255, 0.75);
+  }
+  :visited {
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+.svglink.dark {
+    color: #343a40;
+    :active{
+      color: #343a40;
+    }
+    :hover {
+      color: rgba(52, 58, 64, 0.75);
+    }
+    :visited {
+      color: rgba(52, 58, 64, 0.75);
+    }
+  }
 
 .enlighter-default {
   overflow:hidden;
