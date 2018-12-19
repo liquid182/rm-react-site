@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IFeedItem } from "./IRssFeed";
-import "enlighterjs";
+import "./enlighterjs.min.js";
 import * as _ from "lodash";
 import Octicon, {TriangleDown, TriangleUp} from '@githubprimer/octicons-react';
 import * as ReactDOM from "react-dom";
