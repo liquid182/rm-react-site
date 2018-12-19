@@ -1,16 +1,25 @@
 @import "~enlighterjs/dist/enlighterjs.dracula.min.css";
 
-.card {
-  transition: all ease-in-out 2s;
-  /*:hover {
-    .card-header {
+.card-body {
+  transition: flex-grow ease-in-out 2s;
+  //max-height:300px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  transition: flex-grow 2s;
+  //flex: 1 0 300px;
+  max-height:min-content;
+}
 
-    }
-    .card-body {
-    }
-    .card-footer {
-    }
-  }*/
+.card-body img {
+  max-width:100%;
+}
+.card-body.expanded {
+  //max-height:min-content;
+}
+.card-footer {
+  display:flex;
+  flex-direction: row;
 }
 
 .enlighter-default {

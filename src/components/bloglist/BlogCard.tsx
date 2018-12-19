@@ -55,13 +55,13 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
         <div className="card-header text-white bg-dark">
           {this.props.item.title}
         </div>
-        <div className="card-body">
+        <div className={"card-body "+(this.state.expanded ? "expanded":"")}>
           <p className="card-text" dangerouslySetInnerHTML={{__html: this.state.expanded ? this.props.item["content:encoded"]:this.props.item.content}}></p>
         </div>
         <div className="card-footer text-muted">
-          <span className="mr-auto">Published:{this.props.item.pubDate}</span>
+          <span>Published:{this.props.item.pubDate}</span>
           <span className="ml-auto" onClick={this.toggleExpand}>
-            <Octicon icon={this.state.expanded ? TriangleUp:TriangleDown} />
+            <Octicon width={100} height={25} icon={this.state.expanded ? TriangleUp:TriangleDown} />
           </span>
         </div>
       </div>
