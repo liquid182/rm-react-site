@@ -10,7 +10,8 @@ interface IBlogCard {
   item: IFeedItem,
   showPubDate:boolean,
   expandToFullContent:boolean,
-  showExternalLink:boolean
+  showExternalLink:boolean,
+  pubDateTextElement:string|JSX.Element
 }
 
 interface IBlogCardState {
@@ -24,7 +25,8 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
   public static defaultProps = {
     showPubDate:true,
     expandToFullContent:true,
-    showExternalLink:true
+    showExternalLink:true,
+    pubDateTextElement:"Published: "
   };
 
   constructor(props: IBlogCard) {
@@ -77,7 +79,7 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
         { (this.props.expandToFullContent || this.props.showPubDate) &&
         <div className="card-footer text-muted">
           {this.props.showPubDate &&
-            <span>Published:{this.props.item.pubDate}</span>
+            <span>{this.props.pubDateTextElement}{this.props.item.pubDate}</span>
           }
           { this.props.expandToFullContent &&
             <SVGLink classes={["ml-auto"]} onClick={this.toggleExpand} dark={true}>

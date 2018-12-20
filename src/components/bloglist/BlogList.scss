@@ -17,32 +17,6 @@
   display:flex;
 }
 
-.svglink {
-  color: #fff;
-  :active{
-    color: #fff;
-  }
-  :hover {
-    color: rgba(255, 255, 255, 0.75);
-  }
-  :visited {
-    color: rgba(255, 255, 255, 0.75);
-  }
-}
-
-.svglink.dark {
-    color: #343a40;
-    :active{
-      color: #343a40;
-    }
-    :hover {
-      color: rgba(52, 58, 64, 0.75);
-    }
-    :visited {
-      color: rgba(52, 58, 64, 0.75);
-    }
-  }
-
 .enlighter-default {
   overflow:hidden;
 }

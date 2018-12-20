@@ -15,7 +15,7 @@ export interface IFeed {
     [key: string]: any;
     link?: string;
     title?: string;
-    items?: IFeedItem[];
+    items: IFeedItem[];
     feedUrl?: string;
     description?: string;
     itunes?: {
