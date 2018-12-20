@@ -2,6 +2,20 @@
 
 $slideshow-height: 70vh;
 $max-body-width:  map-get($grid-breakpoints, lg);
+html,
+body {
+  height:100%;
+}
+
+.tab__blog {
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+.tab__blog > * {
+  flex-shrink: 0;
+}
 
   h1, .navbar-brand {
     font-size: 2.5em;
@@ -50,35 +64,38 @@ $max-body-width:  map-get($grid-breakpoints, lg);
     }
   }
 
+  button.svglink{
+    border:none;
+    cursor: pointer;
+    display:inline-block;
+  }
   .svglink {
     color: #fff;
-    :active{
-      color: #fff;
+    &:active, svg:active{
+      color: rgba(255, 255, 255, 1);
     }
-    :hover {
+    &:hover, svg:hover {
       color: rgba(255, 255, 255, 0.75);
     }
-    :visited {
+    &:visited, svg:visited {
       color: rgba(255, 255, 255, 0.75);
+    }
+    &.dark{
+      color: rgba(52, 58, 64, 1);
+      &:active, svg:active{
+        color: rgba(52, 58, 64, 1);
+      }
+      &:hover, svg:hover {
+        color: rgba(52, 58, 64, 0.75);
+      }
+      &:visited, svg:visited {
+        color: rgba(52, 58, 64, 0.75);
+      }
     }
     svg{
       height:100%;
     }
   }
-
-
-  .svglink.dark {
-      color: #343a40;
-      :active{
-        color: #343a40;
-      }
-      :hover {
-        color: rgba(52, 58, 64, 0.75);
-      }
-      :visited {
-        color: rgba(52, 58, 64, 0.75);
-      }
-    }
 
   .nav-divider {
     width: 25em;

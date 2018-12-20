@@ -34,7 +34,8 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
     this.state = {expanded:false};
   }
 
-  private toggleExpand = ():void => {
+  private toggleExpand = (event:React.MouseEvent):void => {
+    event.preventDefault();
     this.setState({expanded:!this.state.expanded})
   };
 
@@ -64,7 +65,7 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
 
   render() {
     return (
-      <div className="card bg-light mb-3">
+      <div className={"card bg-light mb-3 "+(this.state.expanded ? "expanded":"")}>
         <div className="card-header text-white bg-dark">
           <span className="card-heading">{this.props.item.title}</span>
           { this.props.showExternalLink &&
@@ -73,7 +74,7 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
             </SVGLink>
           }
         </div>
-        <div className={"card-body "+(this.state.expanded ? "expanded":"")}>
+        <div className={"card-body"}>
           <p className="card-text" dangerouslySetInnerHTML={{__html: this.state.expanded ? this.props.item["content:encoded"]:this.props.item.content}}></p>
         </div>
         { (this.props.expandToFullContent || this.props.showPubDate) &&
@@ -82,7 +83,7 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
             <span>{this.props.pubDateTextElement}{this.props.item.pubDate}</span>
           }
           { this.props.expandToFullContent &&
-            <SVGLink classes={["ml-auto"]} onClick={this.toggleExpand} dark={true}>
+            <SVGLink button={true} classes={["ml-auto"]} onClick={this.toggleExpand} dark={true}>
               <Octicon width={50} height={25} icon={this.state.expanded ? TriangleUp:TriangleDown} />
             </SVGLink>
         }
