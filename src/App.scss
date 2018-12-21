@@ -7,16 +7,6 @@ body {
   height:100%;
 }
 
-.tab__blog {
-  height:100%;
-  display:flex;
-  flex-direction:column;
-}
-
-.tab__blog > * {
-  flex-shrink: 0;
-}
-
   h1, .navbar-brand {
     font-size: 2.5em;
   }
@@ -33,14 +23,10 @@ body {
     font-size: 2.1em;
   }
 
-  h3, .card-header {
+  h3, .card-heading {
     font-size: 1.8em;
   }
 
-  /*p, a, span {
-    font-size: 1.4em;
-    position:relative;
-  }*/
   body {
     margin: 0;
     font-size: 62.5%;
@@ -64,39 +50,6 @@ body {
     }
   }
 
-  button.svglink{
-    border:none;
-    cursor: pointer;
-    display:inline-block;
-  }
-  .svglink {
-    color: #fff;
-    &:active, svg:active{
-      color: rgba(255, 255, 255, 1);
-    }
-    &:hover, svg:hover {
-      color: rgba(255, 255, 255, 0.75);
-    }
-    &:visited, svg:visited {
-      color: rgba(255, 255, 255, 0.75);
-    }
-    &.dark{
-      color: rgba(52, 58, 64, 1);
-      &:active, svg:active{
-        color: rgba(52, 58, 64, 1);
-      }
-      &:hover, svg:hover {
-        color: rgba(52, 58, 64, 0.75);
-      }
-      &:visited, svg:visited {
-        color: rgba(52, 58, 64, 0.75);
-      }
-    }
-    svg{
-      height:100%;
-    }
-  }
-
   .nav-divider {
     width: 25em;
   }
@@ -105,7 +58,6 @@ body {
     margin-right: 3rem;
   }
   .navbar-app-logo {
-    //animation: app-logo-spin infinite 20s linear;
     transform: rotate(-30deg);
     height: 10em;
     margin-bottom: 0.5em;
@@ -122,33 +74,25 @@ body {
     color: white;
   }
 
+   .body-content{
+     display:flex;
+     justify-content: center;
+   }
 
   .tab {
-    max-width: $max-body-width;
-    //margin:2em;
-    margin-top:2em;
-    margin-left:auto;
-    margin-right:auto;
+    display:flex;
+    flex-direction: column;
+    flex: 0 1 $max-body-width;
+    margin:2em;
   }
 
   .tab.tab__photos {
-    max-width:100%;
-    margin:2em;
-  }
-  @include media-breakpoint-down(md){
-    .tab {
-      margin:2em;
-    }
+    flex:0 0 100%;
   }
 
   .photostream{
     position:relative;
     margin: -2em;
-  }
-
-@keyframes app-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
   }
 
 @include media-breakpoint-down(sm) {

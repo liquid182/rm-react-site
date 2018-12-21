@@ -115,6 +115,14 @@ export class BlogList extends React.Component<IBlogList, IBlogListState> {
     } else {
       feedElements = [this.props.loadingIndicator];
     }
-    return feedElements;
+    return (<div className="bloglist">
+              <div className="selected">
+                {feedElements[0]}
+              </div>
+              <div className="list">
+                {feedElements}
+              </div>
+            </div>
+          );
   }
 }
