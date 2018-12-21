@@ -12,19 +12,10 @@ html,body{
 .bloglist{
   display:flex;
   flex-flow:row wrap;
-  width:100%;
 }
 .bloglist > * {
   flex: 1 100%;
   min-width:0;
-}
-
-.card-body {
-  //transition: flex-grow ease-in-out 2s;
-  //display:flex;
-  //flex-direction:column;
-  //overflow:hidden;
-  //max-height:100%;
 }
 
 .card-body img {

@@ -77,23 +77,28 @@ body {
    .body-content{
      display:flex;
      justify-content: center;
+     margin:2em;
    }
 
   .tab {
     display:flex;
     flex-direction: column;
-    flex: 0 1 $max-body-width;
-    margin:2em;
+    //flex: 0 1 $max-body-width;
+    max-width:100%;
   }
 
-  .tab.tab__photos {
-    flex:0 0 100%;
-  }
 
   .photostream{
     position:relative;
     margin: -2em;
   }
+
+@include media-breakpoint-up(md){
+  .tab{
+    flex:0 0 100%;
+    max-width:$max-body-width;
+  }
+}
 
 @include media-breakpoint-down(sm) {
   .nav-right {

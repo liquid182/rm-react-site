@@ -2,42 +2,52 @@ import * as React from "react";
 import { IFeedItem } from "./IRssFeed";
 import "./enlighterjs.min.js";
 import * as _ from "lodash";
-import Octicon, {LinkExternal,TriangleDown, TriangleUp} from '@githubprimer/octicons-react';
+import Octicon, {Icon,LinkExternal,TriangleDown, TriangleUp} from '@githubprimer/octicons-react';
 import * as ReactDOM from "react-dom";
 import SVGLink from "../elements/SVGLink"
 
 interface IBlogCard {
   item: IFeedItem,
   showPubDate:boolean,
+  expanded:boolean,
   expandToFullContent:boolean,
+  expandIconCollapsed:Icon,
+  expandIconExpanded:Icon,
+  expandCallback?:(event: React.MouseEvent<Element>,id:string) => void,
+  externalLinkIcon:Icon,
   showExternalLink:boolean,
   pubDateTextElement:string|JSX.Element
 }
 
 interface IBlogCardState {
-  expanded:boolean
+  //expanded:boolean
 }
 
 export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
   private static INITIALIZED_ATTR:string = "data-initialized";
   private static THEME_SELECTOR: string = "data-enlighter-theme";
+  private wrappedOnClick:(event: React.MouseEvent<Element>) => void;
 
   public static defaultProps = {
     showPubDate:true,
+    expanded:false,
     expandToFullContent:true,
+    expandIconCollapsed:TriangleDown,
+    expandIconExpanded:TriangleUp,
+    externalLinkIcon:LinkExternal,
     showExternalLink:true,
     pubDateTextElement:"Published: "
   };
 
   constructor(props: IBlogCard) {
     super(props);
-    this.state = {expanded:false};
+      this.wrappedOnClick = (e:React.MouseEvent<Element>):void => {
+        e.preventDefault();
+        if( props.expandCallback !== undefined ){
+          props.expandCallback(e,_.toString(this.props.item.guid));
+        }
+    };
   }
-
-  private toggleExpand = (event:React.MouseEvent):void => {
-    event.preventDefault();
-    this.setState({expanded:!this.state.expanded})
-  };
 
   public componentDidUpdate(){
     let domComponent:Element|Text|null = ReactDOM.findDOMNode(this);
@@ -63,19 +73,29 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
       }
   }
 
+  private getExpandIcon = ():Icon=>{
+    let expandIcon:Icon;
+    if( this.props.expanded ){
+      expandIcon = this.props.expandIconExpanded;
+    }else{
+      expandIcon = this.props.expandIconCollapsed;
+    }
+    return expandIcon;
+  };
+
   render() {
     return (
-      <div className={"card bg-light mb-3 "+(this.state.expanded ? "expanded":"")}>
+      <div data-guid={this.props.item.guid} className={"card bg-light mb-3 "+(this.props.expanded ? "expanded":"")}>
         <div className="card-header text-white bg-dark">
           <span className="card-heading">{this.props.item.title}</span>
           { this.props.showExternalLink &&
             <SVGLink classes={["ml-auto"]} onClick={()=>{window.open(this.props.item.link,"_blank");}}>
-              <Octicon width={50} height={25} icon={LinkExternal} />
+              <Octicon width={50} height={25} icon={this.props.externalLinkIcon} />
             </SVGLink>
           }
         </div>
         <div className={"card-body"}>
-          <p className="card-text" dangerouslySetInnerHTML={{__html: this.state.expanded ? this.props.item["content:encoded"]:this.props.item.content}}></p>
+          <p className="card-text" dangerouslySetInnerHTML={{__html: this.props.expanded ? this.props.item["content:encoded"]:this.props.item.content}}></p>
         </div>
         { (this.props.expandToFullContent || this.props.showPubDate) &&
         <div className="card-footer text-muted">
@@ -83,8 +103,8 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
             <span>{this.props.pubDateTextElement}{this.props.item.pubDate}</span>
           }
           { this.props.expandToFullContent &&
-            <SVGLink button={true} classes={["ml-auto"]} onClick={this.toggleExpand} dark={true}>
-              <Octicon width={50} height={25} icon={this.state.expanded ? TriangleUp:TriangleDown} />
+            <SVGLink button={true} classes={["ml-auto"]} onClick={this.wrappedOnClick} dark={true}>
+              <Octicon width={50} height={25} icon={this.getExpandIcon()} />
             </SVGLink>
         }
         </div>
