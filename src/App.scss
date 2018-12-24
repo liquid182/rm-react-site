@@ -83,7 +83,6 @@ body {
   .tab {
     display:flex;
     flex-direction: column;
-    //flex: 0 1 $max-body-width;
     max-width:100%;
   }
 
@@ -97,7 +96,11 @@ body {
   .tab{
     flex:0 0 100%;
     max-width:$max-body-width;
+    &.tab__photos {
+      max-width:100%;
+    }
   }
+
 }
 
 @include media-breakpoint-down(sm) {

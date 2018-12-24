@@ -49,9 +49,13 @@ export class BlogCard extends React.Component<IBlogCard, IBlogCardState> {
     };
   }
 
+  public componentDidMount(){
+    this.componentDidUpdate();
+  }
+
   public componentDidUpdate(){
     let domComponent:Element|Text|null = ReactDOM.findDOMNode(this);
-    if( domComponent instanceof Element ){
+    if( domComponent instanceof Element && this.props.expanded){
       let eslighterItems:NodeListOf<Element> = domComponent.querySelectorAll("["+BlogCard.THEME_SELECTOR+"]");
       _.map(eslighterItems, this.translateEnlighterTheme);
     }
